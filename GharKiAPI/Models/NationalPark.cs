@@ -6,8 +6,8 @@ namespace GharKiAPI.Models
     {
         public int Id { get; set; }
         [Required]
-        public  string Name { get; set; }
-        public  string State { get; set; }
+        public required string Name { get; set; }
+        public required string State { get; set; }
         public Byte[]? Picture { get; set; }
         public DateTime Created { get; set; }
         public DateTime Established { get; set; }

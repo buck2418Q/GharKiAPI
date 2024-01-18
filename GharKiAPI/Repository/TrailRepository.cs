@@ -15,7 +15,7 @@ namespace GharKiAPI.Repository
         public bool CreateTrail(Trail Trail)
         {
             _context.trails.Add(Trail);
-            return save()
+            return save();
         }
 
         public bool DeleteTrail(Trail Trail)
@@ -26,8 +26,7 @@ namespace GharKiAPI.Repository
 
         public Trail GetTrail(int TrailId)
         {
-            _context.trails.Include(t => t.NationalPark).FirstOrDefault(t => t.Id == TrailId);
-            return
+            return _context.trails.Include(t => t.NationalPark).FirstOrDefault(t => t.Id == TrailId);
         }
 
         public ICollection<Trail> GetTrailNationalPark(int nationalParkId)
@@ -35,9 +34,9 @@ namespace GharKiAPI.Repository
             return _context.trails.Include(t => t.NationalPark).ToList();
         }
 
-        public ICollection<Trail> GetTrails()
+        public ICollection<Trail> GetTrailsNationalPark(int nationalParkId)
         {
-            return _context.trails.Include(t => t.NationalPark).Where(t => t.nationalparkidId == NationalParkId).ToList();
+            return _context.trails.Include(t => t.NationalPark).Where(t => t.NationalParkID == nationalParkId).ToList();
         }
 
         public bool save()
@@ -50,9 +49,9 @@ namespace GharKiAPI.Repository
             return _context.trails.Any(t => t.Id == TrailId);
         }
 
-        public bool Trailexist(int TrailName)
+        public bool Trailexist(string TrailName)
         {
-            return _context.trails.Any(t => t.Name == trailName);
+            return _context.trails.Any(t => t.Name == TrailName);
         }
 
         public bool UpdateTrail(Trail Trail)
@@ -60,5 +59,13 @@ namespace GharKiAPI.Repository
             _context.trails.Update(Trail);
             return save();
         }
+
+        ICollection<Trail> ITrailRepository.GetTrails()
+        {
+            return _context.trails.Include(t => t.NationalPark).ToList();
+
+        }
+
+
     }
 }

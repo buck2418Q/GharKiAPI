@@ -25,7 +25,7 @@ namespace GharKiAPI.Repository
 
         public NationalPark GetNationalPark(int nationalParkId)
         {
-            return _context.nationalParks.Any(np => np.Id == nationalParkId);
+            return _context.nationalParks.Find(nationalParkId);
             //same in 42
         }
 

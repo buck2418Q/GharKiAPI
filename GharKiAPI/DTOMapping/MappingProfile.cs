@@ -1,4 +1,5 @@
 ﻿//automapper install 
+using AutoMapper;
 using GharKiAPI.Models;
 using GharKiAPI.Models.DTO;
 
@@ -8,8 +9,8 @@ namespace GharKiAPI.DTOMapping
     {
         public MappingProfile()
         {
-            CreateMap<NationalPark, NationalprakDto>().RevertMap()
-             CreateMap<TrailDTO, Trail>().RevertMap();
+            CreateMap<NationalPark, NationalParkDTO>().ReverseMap();
+            CreateMap<TrailDTO, Trail>().ReverseMap();
         }
 
     }
