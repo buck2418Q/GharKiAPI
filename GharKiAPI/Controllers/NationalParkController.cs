@@ -28,5 +28,13 @@ namespace GharKiAPI.Controllers
                 Select(_mapper.Map<NationalPark, NationalParkDTO>);
             return Ok(nationalparkdto);//200 ye ok ka code hai status code
         }
+        [HttpGet("{nationalParkId:int}", Name = "GetNationalPark")]
+        public IActionResult GetNationalPark(int nationalParkId)
+        {
+            var nationalPark = _nationalParkRepository.GetNationalPark(nationalParkId);
+            if (nationalPark == null) return BadRequest();
+            var nationalParkDTO = _mapper.Map<NationalParkDTO>(nationalPark);
+            return Ok(nationalParkDTO);
+        }
     }
 }
